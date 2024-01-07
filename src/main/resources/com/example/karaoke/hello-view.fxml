@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.karaoke.HelloController" style="-fx-background-color: #333333;">
+  <padding>
+    <Insets top="30" bottom="30" left="30" right="30"/>
+  </padding>
+
+  <Label fx:id="welcomeText" text="Welcome to the KaraokeApp!" style="-fx-font-size: 24pt; -fx-text-fill: #E0E0E0; -fx-font-family: 'Arial';"/>
+
+  <Button fx:id="startButton" onAction="#onStartButtonClick" text="Start Karaoke" style="-fx-background-color: #5E35B1; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 15px 30px; -fx-font-size: 16pt; -fx-font-family: 'Arial';"/>
+</VBox>
+
+
