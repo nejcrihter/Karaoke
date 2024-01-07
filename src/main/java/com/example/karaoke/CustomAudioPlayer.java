@@ -23,7 +23,7 @@ public class CustomAudioPlayer {
     private int x = 0;
     private int y = 0;
     private int xOld = 0;
-    int frameRate = 44100; // Replace with actual frame rate if available
+    int frameRate = 44100;
 
     public CustomAudioPlayer(Canvas canvas) {
         this.canvas = canvas;
@@ -32,27 +32,24 @@ public class CustomAudioPlayer {
     public void play(String path) throws StreamPlayerException {
         player = new StreamPlayer();
 
-        // Add listener to handle player events
         player.addStreamPlayerListener(new StreamPlayerListener() {
             @Override
             public void opened(Object dataSource, Map<String, Object> properties) {
-                // Handle opened event
             }
 
             @Override
             public void progress(int nEncodedBytes, long microsecondPosition, byte[] pcmData, Map<String, Object> properties) {
-                byte[] stereoBytes = pcmData; // Your stereo PCM data
                 int sampleSize = 2; // 2 bytes for 16-bit audio
-                float[] leftChannel = new float[stereoBytes.length / 2 / sampleSize];
-                float[] rightChannel = new float[stereoBytes.length / 2 / sampleSize];
+                float[] leftChannel = new float[pcmData.length / 2 / sampleSize];
+                float[] rightChannel = new float[pcmData.length / 2 / sampleSize];
 
-                for (int i = 0, sampleIndex = 0; i < stereoBytes.length; i += 4, sampleIndex++) {
+                for (int i = 0, sampleIndex = 0; i < pcmData.length; i += 4, sampleIndex++) {
                     // Extract left channel (first two bytes of every four)
-                    int leftSample = (stereoBytes[i + 1] << 8) | (stereoBytes[i] & 0xFF);
+                    int leftSample = (pcmData[i + 1] << 8) | (pcmData[i] & 0xFF);
                     leftChannel[sampleIndex] = leftSample / 32768.0f; // Normalize to range -1.0 to 1.0
 
                     // Extract right channel (second two bytes of every four)
-                    int rightSample = (stereoBytes[i + 3] << 8) | (stereoBytes[i + 2] & 0xFF);
+                    int rightSample = (pcmData[i + 3] << 8) | (pcmData[i + 2] & 0xFF);
                     rightChannel[sampleIndex] = rightSample / 32768.0f; // Normalize to range -1.0 to 1.0
                 }
 
@@ -63,7 +60,7 @@ public class CustomAudioPlayer {
 
             @Override
             public void statusUpdated(StreamPlayerEvent event) {
-                // Handle different statuses like playing, stopped, resumed, etc.
+
             }
 
 
@@ -97,7 +94,6 @@ public class CustomAudioPlayer {
             }
 
             public void endOfMedia() {
-                // Handle end of media
             }
         });
 

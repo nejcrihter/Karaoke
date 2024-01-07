@@ -18,7 +18,6 @@ public class HelloController {
 
     @FXML
     protected void onStartButtonClick() {
-        // Logic to switch to the main Karaoke screen
         showSongSelection();
     }
 
@@ -28,15 +27,14 @@ public class HelloController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("songSelection.fxml"));
             Parent songSelectionRoot = loader.load();
 
-            // Get the current stage from the start button (assuming startButton is a member of WelcomeController)
+            // Get the current stage from the start button
             Stage stage = (Stage) startButton.getScene().getWindow();
 
             // Set the scene to the song selection screen
-            stage.setScene(new Scene(songSelectionRoot, 500, 575)); // Adjust the size as needed
+            stage.setScene(new Scene(songSelectionRoot, 500, 575));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle the error appropriately
         }
     }
 }

@@ -98,15 +98,14 @@ public class VisualizationController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("songSelection.fxml"));
             Parent songSelectionRoot = loader.load();
 
-            // Get the current stage from the start button (assuming startButton is a member of WelcomeController)
+            // Get the current stage from the back button
             Stage stage = (Stage) backButton.getScene().getWindow();
 
             // Set the scene to the song selection screen
-            stage.setScene(new Scene(songSelectionRoot, 500, 575)); // Adjust the size as needed
+            stage.setScene(new Scene(songSelectionRoot, 500, 575));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle the exception
         }
     }
 
@@ -149,7 +148,7 @@ public class VisualizationController {
         }
 
         // Check if it's time to switch lines
-        if (nextSubtitle != null && currentTime >= nextSubtitle.start.toMillis() - 100) { // Adjust 500ms as needed
+        if (nextSubtitle != null && currentTime >= nextSubtitle.start.toMillis() - 100) {
             isUp = !isUp;
         }
 
@@ -170,6 +169,7 @@ public class VisualizationController {
             StringBuilder textBuilder = new StringBuilder();
             boolean appendNextLine = false;
 
+            //regex for time stamp
             Pattern timePattern = Pattern.compile("(\\d{2}):(\\d{2}):(\\d{2}),(\\d{3}) --> (\\d{2}):(\\d{2}):(\\d{2}),(\\d{3})");
 
             for (String line : lines) {

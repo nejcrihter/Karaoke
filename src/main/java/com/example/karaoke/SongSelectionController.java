@@ -36,7 +36,6 @@ public class SongSelectionController {
 
         } catch (IOException | StreamPlayerException e) {
             e.printStackTrace();
-            // Handle the exception
         }
     }
 }
